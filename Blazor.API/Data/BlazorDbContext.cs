@@ -22,5 +22,11 @@ namespace Blazor.API.Data
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             optionsBuilder.UseSqlServer(connectionString);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new BlazorDbContextSeed(modelBuilder).Seed();
+        }
     }
 }
